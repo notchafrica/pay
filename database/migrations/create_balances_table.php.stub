@@ -1,0 +1,90 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration {
+    public function up()
+    {
+        Schema::dropIfExists('balance_history');
+        Schema::create('balance_history', function (Blueprint $table) {
+            $table->id();
+            $table->morphs('balanceable');
+            $table->integer('amount')->default(0);
+            //morphs referenceable nullable
+            $table->string('referenceable_type')->nullable();
+            $table->unsignedBigInteger('referenceable_id')->nullable();
+
+            $table->text('description')->nullable();
+            $table->timestamps();
+
+            //compound index
+            $table->index(['referenceable_type', 'referenceable_id']);
+        });
+
+        Schema::dropIfExists('sandbox_balance_history');
+        Schema::create('sandbox_balance_history', function (Blueprint $table) {
+            $table->id();
+            $table->morphs('balanceable');
+            $table->integer('amount')->default(0);
+            //morphs referenceable nullable
+            $table->string('ref_type')->nullable();
+            $table->unsignedBigInteger('ref_id')->nullable();
+
+            $table->text('description')->nullable();
+            $table->timestamps();
+
+            //compound index
+            $table->index(['ref_type', 'ref_id']);
+        });
+
+        Schema::dropIfExists('available_balance_history');
+        Schema::create('available_balance_history', function (Blueprint $table) {
+            $table->id();
+            $table->morphs('balanceable');
+            $table->integer('amount')->default(0);
+            //morphs referenceable nullable
+            $table->string('ref_type')->nullable();
+            $table->unsignedBigInteger('ref_id')->nullable();
+
+            $table->text('description')->nullable();
+            $table->timestamps();
+
+            //compound index
+            $table->index(['ref_type', 'ref_id']);
+        });
+
+        Schema::dropIfExists('reserved_balance_history');
+        Schema::create('reserved_balance_history', function (Blueprint $table) {
+            $table->id();
+            $table->morphs('balanceable');
+            $table->integer('amount')->default(0);
+            //morphs referenceable nullable
+            $table->string('ref_type')->nullable();
+            $table->unsignedBigInteger('ref_id')->nullable();
+
+            $table->text('description')->nullable();
+            $table->timestamps();
+
+            //compound index
+            $table->index(['ref_type', 'ref_id']);
+        });
+
+        Schema::dropIfExists('pending_balance_history');
+        Schema::create('pending_balance_history', function (Blueprint $table) {
+            $table->id();
+            $table->morphs('balanceable');
+            $table->integer('amount')->default(0);
+            //morphs referenceable nullable
+            $table->string('ref_type')->nullable();
+            $table->unsignedBigInteger('ref_id')->nullable();
+
+            $table->text('description')->nullable();
+            $table->timestamps();
+
+            //compound index
+            $table->index(['ref_type', 'ref_id']);
+        });
+    }
+};
