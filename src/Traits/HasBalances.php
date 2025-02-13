@@ -10,9 +10,9 @@ use Notch\Framework\Balances\SandboxBalance\HasSandboxBalance;
 
 trait HasBalances
 {
-    use HasBalance;
     use HasAvailableBalance;
+    use HasBalance;
     use HasPendingBalance;
-    use HasSandboxBalance;
     use HasReservedBalance;
+    use HasSandboxBalance;
 }

@@ -233,10 +233,11 @@ class Currency
     {
         return $this->getDriver();
     }
+
     public function getDriver()
     {
         if ($this->driver === null) {
-            $this->driver = new \Notch\Framework\Currency\Models\Currency();
+            $this->driver = new \Notch\Framework\Currency\Models\Currency;
         }
 
         return $this->driver;
